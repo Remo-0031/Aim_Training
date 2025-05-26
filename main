@@ -1,0 +1,55 @@
+int targetx = 0;
+int targety = 0;
+int score = 0;
+void setup(){
+  size(500,400);
+}
+
+
+void draw(){
+  background(0,0,0);
+  noCursor();
+  
+  textSize(15);
+  text("Score: " + str(score),10,10);
+  
+  createTarget();
+ 
+  ellipse(mouseX,mouseY,5,5);
+  
+  fill(255,255,255);
+  rect(mouseX-3,mouseY+7,5,15);
+  
+  fill(255,255,255);
+  rect(mouseX-3,mouseY-22,5,15);
+  
+  fill(255,255,255);
+  rect(mouseX-22,mouseY-2,15,5);
+  
+  fill(255,255,255);
+  rect(mouseX+6,mouseY-2,15,5);
+
+}
+
+void createTarget(){
+  fill(255,0,0);
+  rect(targetx,targety,50,50);
+}
+
+void mouseClicked(){
+  if((mouseX <= targetx+50 && mouseX > targetx) && (mouseY <= targety+50 && mouseY > targety)){
+    targetx = int(random(0,420));
+    targety = int(random(0,320));
+    createTarget();
+    score+=1;
+  }else{
+    background(0,0,0);
+    noLoop();
+    textSize(15);
+    text("Game OVER",250,180);
+    
+    textSize(15);
+    text("Your Score : " + str(score),250,200);
+  }
+  
+}
